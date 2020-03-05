@@ -1,24 +1,21 @@
-# README
+React + Rails app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+getting started:
 
-Things you may want to cover:
+1) reference article https://www.freecodecamp.org/news/how-to-create-a-rails-project-with-a-react-and-redux-front-end-8b01e17a1db/
 
-* Ruby version
+2) postgresql with postgres user (without password)
 
-* System dependencies
+3) native extensions for postgresql, nikogiri
 
-* Configuration
+3) installed <i>gem</i> then -> <i>gem install bundle</i> then -> <i>bundle install</i>
 
-* Database creation
+this installs gemfiles for the project
 
-* Database initialization
+4) run <i>rails webpacker:install</i> (?)
 
-* How to run the test suite
+5) run server: <i>rails s</i>, run webpacker dev server: <i>./bin/webpack-dev-server</i>
 
-* Services (job queues, cache servers, search engines, etc.)
+<strong>react components are in app/javascript/components</strong>
 
-* Deployment instructions
-
-* ...
+add js files to app/javascript
