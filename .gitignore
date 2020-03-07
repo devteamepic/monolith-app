@@ -21,6 +21,7 @@
 /storage/*
 !/storage/.keep
 .idea/
+vendor
 /node_modules
 /yarn-error.log
 
