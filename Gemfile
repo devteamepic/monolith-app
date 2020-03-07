@@ -14,6 +14,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'doorkeeper'
+gem 'carrierwave'
+# gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do

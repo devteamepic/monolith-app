@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
       scope :users do
         get '/me' => 'api/v1/users#index'
+
+        post '/:user_id/documents' => 'api/v1/documents#create'
+        get '/:user_id/documents' => 'api/v1/documents#list'
       end
     end
   end
