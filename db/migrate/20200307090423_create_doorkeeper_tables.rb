@@ -75,5 +75,10 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[5.2]
     # Uncomment below to ensure a valid reference to the resource owner's table
     add_foreign_key :oauth_access_grants, :users, column: :resource_owner_id
     add_foreign_key :oauth_access_tokens, :users, column: :resource_owner_id
+
+    Doorkeeper::Application.create(name: "DiplomaRailsApi",
+                                   scopes: "read write",
+                                   confidential: false,
+                                   redirect_uri: "urn:ietf:wg:oauth:2.0:oob")
   end
 end
