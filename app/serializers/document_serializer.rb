@@ -6,6 +6,6 @@ class DocumentSerializer < ApplicationSerializer
   end
 
   def file_preview
-    # object.file.thumb.url
+    object.file.thumb.url
   end
 end
