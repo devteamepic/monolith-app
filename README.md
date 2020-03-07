@@ -6,7 +6,7 @@ getting started:
 
 2) postgresql with postgres user (without password)
 
-3) native extensions for postgresql, nikogiri
+3) native extensions for postgresql, nokogiri
 
 3) installed <i>gem</i> then -> <i>gem install bundle</i> then -> <i>bundle install</i>
 
