@@ -7,8 +7,12 @@
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 server '134.122.65.136', port: 22, roles: [:web, :app, :db], primary: true
-set :stage,           :production
-set :branch,          'master'
+set :stage,              :production
+set :branch,             'master'
+set :rvm_type,           :user
+# set :rvm_ruby_version, "2.5.1p57"
+# set :rvm_ruby_string, :local
+set :rvm_custom_path,   '/usr/share/rvm'
 # role-based syntax
 # ==================
 
