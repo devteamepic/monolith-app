@@ -1,9 +1,14 @@
-# Load DSL and set up stages
-require "capistrano/setup"
+# Load DSL and Setup Up Stages
+require 'capistrano/setup'
+require 'capistrano/deploy'
 
-# Include default deployment tasks
-require "capistrano/deploy"
-
+require 'capistrano/rails'
+require 'capistrano/bundler'
+require 'capistrano/rvm'
+require 'capistrano/puma'
+# require 'capistrano/delayed_job'
+# require 'capistrano/sidekiq'
+install_plugin Capistrano::Puma
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
