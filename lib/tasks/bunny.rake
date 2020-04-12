@@ -2,6 +2,7 @@ namespace :bunny do
   desc 'start consumer'
   task :worker do
     require 'bunny'
+    require_relative '../../config/proto_types_pb'
 
     connection = Bunny.new(automatically_recover: false)
     connection.start
@@ -16,7 +17,7 @@ namespace :bunny do
       # block: true is only used to keep the main thread
       # alive. Please avoid using it in real world applications.
       queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|
-        puts " [x] Received '#{body}'"
+        puts " [x] Received '#{RailsApi::Document.decode(body)}'"
         # imitate some work
         sleep body.count('.')
         puts ' [x] Done'

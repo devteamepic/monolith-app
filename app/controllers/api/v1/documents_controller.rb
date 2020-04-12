@@ -10,6 +10,9 @@ class Api::V1::DocumentsController < Api::V1::BaseApiController
 
     if document.save
       document.reload
+
+      service = Messages::Publish.new
+      service.call(document.to_proto)
       render json: document
     else
       render json: {

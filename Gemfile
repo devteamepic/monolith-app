@@ -19,6 +19,7 @@ gem 'carrierwave'
 gem 'rmagick', '~> 2.15', '>= 2.15.4'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'bunny', '~> 2.4'
+gem 'google-protobuf'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -24,6 +24,7 @@ class Messages::Publish < ApplicationService
   private
 
   def enqueue_message(message)
+
     queue.publish(message, persistent: true)
   end
 
