@@ -6,17 +6,15 @@ class Api::V1::DocumentsController < Api::V1::BaseApiController
       }, status: 400
     end
 
-    document = Document.new(permitted_params)
+    creator_service = Documents::Create.new(current_user)
 
-    if document.save
-      document.reload
+    result = creator_service.call(permitted_params)
 
-      service = Messages::Publish.new
-      service.call(document.to_proto)
-      render json: document
+    if result.success?
+      render json: result.document
     else
       render json: {
-          message: "An error occurred while uploading file, #{document.errors.full_messages.first}"
+          message: "An error occurred while uploading file, #{result.errors}"
       }, status: 500
     end
   end
