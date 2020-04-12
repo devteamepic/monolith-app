@@ -2,7 +2,6 @@ class Api::V1::AuthController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def sign_in
-    p params
     result = User.authenticate(params[:email], params[:password])
 
     unless result.present?
