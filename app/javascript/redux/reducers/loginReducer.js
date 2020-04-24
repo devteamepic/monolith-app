@@ -11,7 +11,10 @@ const authenticate = (state = {}, action) => {
                 user: action.user
             }
         case 'LOGIN_FAILURE':
-            return {}
+            return {
+                loggedIn: false,
+                error: action.error
+            }
         default:
             return {}
     }

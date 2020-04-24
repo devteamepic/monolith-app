@@ -1,5 +1,5 @@
 class StaticController < ApplicationController
   def index
-    @data = {value: "aaaa"}
+    @data = {}
   end
 end

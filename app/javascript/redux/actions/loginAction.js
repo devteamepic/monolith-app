@@ -6,7 +6,6 @@ export function request(user) {
 }
 
 export function success(user) {
-    console.log(user)
     return {
         type: 'LOGIN_SUCCESS',
         user

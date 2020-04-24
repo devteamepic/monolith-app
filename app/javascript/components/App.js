@@ -1,28 +1,45 @@
-import React from "react"
+import React from 'react';
 import '../../assets/stylesheets/application.css';
-import Test from '../components/core/test'
-import { Route, Link } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import reducers from  '../redux/reducers'
-import { BrowserRouter } from 'react-router-dom'
+import reducers from '../redux/reducers'
+import LoginPage from '../components/core/pages/LoginPage/LoginPage'
+import RegisterPage from '../components/core/pages/RegisterPage/RegisterPage'
+import HomePage from '../components/core/pages/HomePage/HomePage'
+import PrivateRoute from '../components/core/atoms/PrivateRoute/PrivateRoute'
+import {Provider} from 'react-redux'
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
+import {applyMiddleware, createStore} from "redux";
 
-const createStoreMiddleware = applyMiddleware() (createStore);
+const createStoreMiddleware = applyMiddleware()(createStore)
+function App(props) {
+  return (
+      <Provider store={createStoreMiddleware(reducers)}>
+        <BrowserRouter>
+          <div className="App">
 
-class App extends React.Component {
-  render () {
+            <Switch>
+              <Route exact path='/login' component={LoginPage}/>
+              <Route exact path='/register' component={RegisterPage}/>
+              <PrivateRoute exact path='/home' component={HomePage}/>
+              <Route path='/openSourceWiki' component={() => {
+                window.location.href = 'https://en.wikipedia.org/wiki/Open_source'
+                return null
+              }}/>
+              <Redirect exact from="/" to="/home" />
+              <Route path='/arxiv' component={() => {
+                window.location.href = 'https://arxiv.org'
+                return null
+              }}/>
+              <Route path='/github' component={() => {
+                window.location.href = 'https://github.com/devteamepic'
+                return null
+              }}/>
+            </Switch>
 
-    return (
-        <Provider store={ createStoreMiddleware(reducers) }>
-            <BrowserRouter>
-                  <div className="App">
-                    <Link style = {{ height: 'fit-content' }} to='/test'>Test</Link>
-                    <Route path='/test' component={Test}/>
-                  </div>
-            </BrowserRouter>
-        </Provider>
-    );
-  }
+          </div>
+        </BrowserRouter>
+      </Provider>
+
+  );
 }
 
 export default App

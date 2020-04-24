@@ -4,3 +4,17 @@ export function addOneFileAction(file) {
         payload: file
     }
 }
+
+export function addFilesAction(fileArray) {
+    return {
+        type: 'NEW_FILE_ARRAY',
+        payload: fileArray
+    }
+}
+
+export function removeFileAction(file) {
+    return {
+        type: 'REMOVE_FILE',
+        payload: file
+    }
+}

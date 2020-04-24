@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import TextStyled from '../../../styled/atoms/textStyled'
 
-const Text = ({ size, children, ...props }) => {
+const Text = ({ size, isHeader, children, ...props }) => {
+    const [shouldAddNewLine] = useState(isHeader)
     const [sizes] = useState({
         large: '32px',
         medium: '24px',
@@ -11,6 +12,7 @@ const Text = ({ size, children, ...props }) => {
     return (
         <TextStyled
           size = { sizes[size] }
+          shouldAddNewLine = { shouldAddNewLine }
         >
           { children }
         </TextStyled>
