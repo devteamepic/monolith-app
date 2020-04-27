@@ -7,4 +7,4 @@
   <p class="alert alert-danger"><%= alert %></p>
 <% end %>
 
-<%= react_component("App", @data.merge({prerender: true}),) %>
+<%= react_component("App", @data.merge({prerender: true}), style: "height: 100%") %>
