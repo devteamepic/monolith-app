@@ -1,7 +1,7 @@
 class Document < ApplicationRecord
   require_relative '../../config/proto_types_pb'
   # validates_presence_of :file
-  belongs_to :documentable, polymorphic: true
+  belongs_to :documentable, polymorphic: true, optional: true
   belongs_to :sender, polymorphic: true
 
   mount_uploader :file, DocumentUploader
