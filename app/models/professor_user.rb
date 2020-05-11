@@ -1,3 +1,3 @@
 class ProfessorUser < User
-  has_many :documents, dependent: :destroy, inverse_of: :user
+  has_many :documents, as: :sender, dependent: :destroy
 end

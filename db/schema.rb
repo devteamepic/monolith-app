@@ -10,20 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_165916) do
+ActiveRecord::Schema.define(version: 2020_05_11_170607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "documents", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
     t.string "mime"
     t.float "size"
     t.string "file", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_documents_on_user_id"
+    t.bigint "sender_id"
+    t.string "sender_type"
+    t.bigint "documentable_id"
+    t.string "documentable_type"
   end
 
   create_table "documents_submissions", force: :cascade do |t|

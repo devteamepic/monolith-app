@@ -2,6 +2,8 @@ class Document < ApplicationRecord
   belongs_to :user, inverse_of: :documents
   require_relative '../../config/proto_types_pb'
   # validates_presence_of :file
+  belongs_to :documentable, polymorphic: true
+  belongs_to :sender, polymorphic: true
 
   mount_uploader :file, DocumentUploader
 

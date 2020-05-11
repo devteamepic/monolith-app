@@ -20,7 +20,7 @@ class Api::V1::DocumentsController < Api::V1::BaseApiController
   end
 
   def list
-    render json: Document.where(user: current_user)
+    render json: Document.where(sender: current_user)
   end
 
   private def permitted_params
