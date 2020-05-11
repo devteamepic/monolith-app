@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
         post '/:user_id/documents' => 'api/v1/documents#create'
         get '/:user_id/documents' => 'api/v1/documents#list'
+
+        post '/:user_id/documents/submissions' => 'api/v1/submissions#create'
+        get '/:user_id/documents/submissions' => 'api/v1/submissions#list'
       end
     end
   end

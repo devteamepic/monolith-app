@@ -1,0 +1,2 @@
+class SubmissionStatus < ApplicationRecord
+end

@@ -2,6 +2,6 @@ class UserSerializer < ApplicationSerializer
   attributes :id, :full_name, :email
 
   def full_name
-    object.first_name + " " + object.last_name
+    object.full_name
   end
 end

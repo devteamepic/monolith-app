@@ -19,4 +19,10 @@ class User < ApplicationRecord
     user = User.find_for_authentication(email: email)
     user.try(:valid_password?, password) ? user : nil
   end
+
+ def full_name
+    combine = "#{first_name} #{last_name}"
+    combine = combine.strip
+    combine == "" ? email : combine
+  end
 end
