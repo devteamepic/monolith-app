@@ -1,0 +1,2 @@
+class DocumentsSubmission < ApplicationRecord
+end
