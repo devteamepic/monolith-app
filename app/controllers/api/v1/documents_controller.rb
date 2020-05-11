@@ -24,6 +24,6 @@ class Api::V1::DocumentsController < Api::V1::BaseApiController
   end
 
   private def permitted_params
-    params.permit(:file, :size, :mime, :name, :user_id)
+    params.permit(:file, :size, :mime, :name)
   end
 end
