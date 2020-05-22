@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>RailsDependency</ID>
+  <OriginalElement>User</OriginalElement>
+  <nodes>
+    <node x="89.77678571428572" y="104.0">SubmissionStatus</node>
+    <node x="0.0" y="809.0">User</node>
+    <node x="171.5" y="486.0">Document</node>
+    <node x="150.8303571428571" y="1132.0">ProfessorUser</node>
+    <node x="145.78869047619045" y="0.0">ApplicationRecord</node>
+    <node x="68.78869047619048" y="259.0">DocumentsSubmission</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="SubmissionStatus" target="ApplicationRecord">
+      <point x="-2.8421709430404007E-14" y="-52.5" />
+      <point x="179.7767857142857" y="79.0" />
+      <point x="208.78869047619045" y="79.0" />
+      <point x="-21.0" y="27.0" />
+    </edge>
+    <edge source="ProfessorUser" target="Document">
+      <point x="58.5" y="-124.5" />
+      <point x="326.3303571428571" y="1107.0" />
+      <point x="367.25" y="1107.0" />
+      <point x="65.25" y="136.5" />
+    </edge>
+    <edge source="DocumentsSubmission" target="SubmissionStatus">
+      <point x="-80.5" y="-88.5" />
+      <point x="149.28869047619048" y="234.0" />
+      <point x="179.77678571428572" y="234.0" />
+      <point x="0.0" y="52.5" />
+    </edge>
+    <edge source="Document" target="DocumentsSubmission">
+      <point x="-87.0" y="-136.5" />
+      <point x="215.0" y="461.0" />
+      <point x="229.78869047619048" y="461.0" />
+      <point x="0.0" y="88.5" />
+    </edge>
+    <edge source="ProfessorUser" target="User">
+      <point x="-58.5" y="-124.5" />
+      <point x="209.3303571428571" y="1107.0" />
+      <point x="161.0" y="1107.0" />
+      <point x="0.0" y="136.5" />
+    </edge>
+    <edge source="DocumentsSubmission" target="ApplicationRecord">
+      <point x="80.5" y="-88.5" />
+      <point x="310.2886904761905" y="234.0" />
+      <point x="280.2767857142857" y="234.0" />
+      <point x="280.2767857142857" y="79.0" />
+      <point x="250.78869047619045" y="79.0" />
+      <point x="21.0" y="27.0" />
+    </edge>
+    <edge source="DocumentsSubmission" target="Document">
+      <point x="107.33333333333331" y="88.5" />
+      <point x="337.1220238095238" y="461.0" />
+      <point x="302.0" y="461.0" />
+      <point x="0.0" y="-136.5" />
+    </edge>
+    <edge source="User" target="DocumentsSubmission">
+      <point x="0.0" y="-136.5" />
+      <point x="161.0" y="784.0" />
+      <point x="153.9375" y="784.0" />
+      <point x="153.9375" y="461.0" />
+      <point x="122.45535714285715" y="461.0" />
+      <point x="-107.33333333333333" y="88.5" />
+    </edge>
+    <edge source="User" target="ApplicationRecord">
+      <point x="-107.33333333333331" y="-136.5" />
+      <point x="53.53869047619048" y="79.0" />
+      <point x="166.78869047619045" y="79.0" />
+      <point x="-63.0" y="27.0" />
+    </edge>
+    <edge source="User" target="Document">
+      <point x="107.33333333333331" y="-136.5" />
+      <point x="268.3333333333333" y="784.0" />
+      <point x="236.75" y="784.0" />
+      <point x="-65.25" y="136.5" />
+    </edge>
+    <edge source="Document" target="ApplicationRecord">
+      <point x="87.0" y="-136.5" />
+      <point x="389.0" y="461.0" />
+      <point x="401.2886904761905" y="461.0" />
+      <point x="401.2886904761905" y="79.0" />
+      <point x="292.7886904761905" y="79.0" />
+      <point x="63.00000000000003" y="27.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5638829407566024" x="216.5" y="690.5" />
+  <SelectedNodes>
+    <node>Document</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Association fields</Category>
+    <Category>Migration fields</Category>
+  </Categories>
+</Diagram>
+
