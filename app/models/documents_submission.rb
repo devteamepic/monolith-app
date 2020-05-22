@@ -5,6 +5,6 @@ class DocumentsSubmission < ApplicationRecord
   belongs_to :user
 
   def to_proto
-    RailsApi::Document.encode(RailsApi::Document.new(id: id, abstract: abstract, status: status))
+    RailsApi::DocumentsSubmission.encode(RailsApi::DocumentsSubmission.new(id: id, abstract: abstract, status: status))
   end
 end
