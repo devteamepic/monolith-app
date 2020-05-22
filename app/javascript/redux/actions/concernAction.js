@@ -1,5 +1,5 @@
-export function concernTrigger() {
-    return {
-        type: 'CONCERN_TRIGGER',
-    }
+export const concernTrigger = () => {
+  return {
+    type: 'CONCERN_TRIGGER',
+  }
 }

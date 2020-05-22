@@ -1,0 +1,30 @@
+import React, { useState } from 'react'
+import SubmissionItemStyled from '../../../styled/organisms/submissionItemStyled'
+import TextViewer from '../../molecules/TextViewer/TextViewer'
+import colorScheme from '../../../../misc/colorScheme'
+
+const SubmissionItem = () => {
+    const [header] = useState([
+        { component: 'text', size: 'large', textValue: '1st submission details' },
+    ])
+    const [text] = useState([
+        { component: 'text', size: 'medium', textValue: 'Submitted on 02.04.2020' },
+    ])
+
+    return (
+        <SubmissionItemStyled>
+          <TextViewer
+            childrenData = { header }
+            notDescription = { true }
+            additionalStyles = { 'color: ' + colorScheme.marigold + '; text-align: left;' }
+          />
+          <TextViewer
+            childrenData = { text }
+            notDescription = { true }
+            additionalStyles = { 'color: ' + colorScheme.marigold + '; text-align: left;' }
+          />
+        </SubmissionItemStyled>
+    )
+}
+
+export default SubmissionItem

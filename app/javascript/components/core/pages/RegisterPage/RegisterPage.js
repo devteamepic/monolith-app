@@ -5,33 +5,31 @@ import RegisterForm from '../../organisms/RegisterForm/RegisterForm'
 import colorScheme from '../../../../misc/colorScheme'
 import LogRegPagesStyled from '../../../styled/pages/logRegPagesStyled'
 import ErrorDialog from '../../organisms/ErrorMessageDialog/ErrorMessageDialog'
-import { registerPageText } from '../../../../misc/registerPageText'
+import { registerPageText } from '../../../../misc/texts/registerPageText'
 
 const RegisterPage = ({ error, ...props }) => {
-    const [errorMessage, setErrorMessage] = useState(error)
+  const [errorMessage, setErrorMessage] = useState(error)
 
-    useEffect(() => {
-        setErrorMessage(error)
-    }, [error])
+  useEffect(() => {
+    setErrorMessage(error)
+  }, [error])
 
-    return (
-        <LogRegPagesStyled
+  return (
+    <LogRegPagesStyled
+      colorScheme = { colorScheme }
+    >
+      { errorMessage && <ErrorDialog/> }
+        <TextViewer
+          childrenData = { registerPageText }
+          additionalStyles = { 'color: black;' }
+        />
+      <div style = {{ height: '100%', width: '100%', backgroundColor: colorScheme.denim }}>
+        <RegisterForm
           colorScheme = { colorScheme }
-        >
-          { errorMessage && <ErrorDialog/> }
-            <TextViewer
-              childrenData={ registerPageText }
-              color = 'black'
-            />
-          <div style={{ height: '100%', width: '100%', backgroundColor: colorScheme.denim }}>
-            <RegisterForm
-              styles={{ marginTop: '10% !important' }}
-              colorScheme = { colorScheme }
-            />
-          </div>
-
-        </LogRegPagesStyled>
-    )
+        />
+      </div>
+    </LogRegPagesStyled>
+  )
 }
 
 const mapStateToProps = (state) => {

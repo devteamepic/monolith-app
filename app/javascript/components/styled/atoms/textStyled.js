@@ -7,6 +7,8 @@ margin: 0;
 font-family: Roboto;
 ${ props => props.shouldAddNewLine || 'display: inline;' }
 width: 100%;
+}
+
 `
 
 export default TextStyled

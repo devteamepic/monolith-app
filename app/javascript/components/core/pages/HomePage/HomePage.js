@@ -1,155 +1,79 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import HomePageStyled from '../../../styled/pages/homePageStyled'
 import colorScheme from '../../../../misc/colorScheme'
-import Text from '../../atoms/Text/Text'
-import Input from '../../atoms/Input/Input'
-import DragAndDrop from '../../atoms/DragAndDrop/DragAndDrop'
 import List from '../../organisms/List/List'
-import FileItem from '../../molecules/FileItem/FileItem'
-import ProfItem from '../../molecules/ProfItem/ProfItem'
-import CheckboxMessage from '../../molecules/CheckboxMessage/CheckboxMessage'
-import { concernTrigger } from '../../../../redux/actions/concernAction'
-import { connect } from 'react-redux'
-import { fileService } from '../../../../misc/services/fileService'
+import TextViewer from '../../molecules/TextViewer/TextViewer'
+import Icon from '../../atoms/Icon/Icon'
+import Button from '../../atoms/Button/Button'
 
-const HomePage = ({ concern, files, dispatch, ...props }) => {
-  const [isConcerned, setIsConcerned] = useState(concern.isConcerned)
-  const [fileArray, setFileArray] = useState(files)
-  const [disabled, setDisabled] = useState(true)
+const HomePage = () => {
+    const [homePageText] = useState([
+        { component: 'text', size: 'medium', textValue: 'UNIFOUND will compare your diploma contents with our database. Its is not a plaguarism comparison! In fact it will try to match the most related article (by meaning) from our database with content of your diploma.' },
+    ])
 
-//  useEffect(() => {
-//    if (shouldFetch) {
-//      fileService.fetchUserData(localStorage.getItem('userId'), localStorage.getItem('token'))
-//                 .then(response => {
-//                   var parsedFileArray = JSON.parse(response)
-//                   setFileArray(parsedFileArray)
-//                   dispatch(addFilesAction(fileArray))
-//                   setShouldFetch(false)
-//                 })
-//                 .catch(error => {
-//                   console.log(error)
-//                   setShouldFetch(false)
-//                 })
-//    }
-//  }, [shouldFetch, dispatch, fileArray])
+    const redirectTo = (url) => {
+        window.location.href = url
+    }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    fileArray.map(file => {
-      console.log(file)
-      fileService.send(file, localStorage.getItem('userId'), localStorage.getItem('token'))
-                 .then(response => {
-                   alert(response)
-                   console.log(response)
-                 })
-                 .catch(error => {
-                   console.log('asdf')
-                   alert(error)
-                   console.log(error)
-                 })
-      return null
-    })
-
-  }
-
-  useEffect(() => {
-    setIsConcerned(concern.isConcerned)
-    setFileArray(files)
-  }, [concern, files])
-
-  useEffect(() => {
-    setDisabled(!(fileArray.length !== 0 && isConcerned))
-  }, [fileArray, isConcerned])
-
-    return (
-        <HomePageStyled
-          colorScheme = { colorScheme }
-        >
-          <div>
-            <div style={{ height: '80%', width: '80%', textAlign: 'center', margin: '10%'}}>
-              <Text
-                size = 'large'
-              >
-                Drop your files here
-              </Text>
-              <div style={{ height: '100px' }}/>
-              <div style={{ height: '500px' }}>
-                <DragAndDrop
-                  height = '500px'
-                />
-              </div>
-              <div style={{ marginTop: '10%' }}>
-                <CheckboxMessage
-                  textColor = 'watermelon'
-                  callback = { concernTrigger }
-                >
-                  I give my concern to UNIFOUND to process my thesis
-                </CheckboxMessage>
-              </div>
-            </div>
+    return(
+        <HomePageStyled>
+          <div
+            style = {{ backgroundColor: colorScheme.denim, position: 'relative' }}
+          >
+            <Icon
+              additionalStyles = { 'position: absolute; top: 20%; left: 20%; text-align: center;' }
+              icon = { 'logo' }
+              heightParam = { '60%' }
+              widthParam = { '60%' }
+            />
           </div>
-          <div style={{ backgroundColor: colorScheme.denim, color: 'white' }}>
-            <div style={{ height: '80%', width: '80%', margin: '10%' }}>
-              <div style={{ textAlign: 'center' }}>
-                <Text
-                  size = 'large'
-                >
-                  Edit here
-                </Text>
-              </div>
-              <List
-                color = 'steel'
-              >
-                { fileArray.map(file => (
-                    <FileItem
-                      key = { file.id }
-                      fileObject = { file }
-                    />
-                  )
-                )}
-              </List>
-            </div>
+          <div
+            style = {{ backgroundColor: colorScheme.steel }}
+          >
+            <TextViewer
+              childrenData = { homePageText }
+              additionalStyles = { 'margin-top: 15%;' }
+            />
           </div>
-          <div style={{ backgroundColor: colorScheme.steel }}>
-            <div style={{ height: '90%', width: '80%', margin: '5% 10% 0 10%' }}>
-              <div
-                style = {{ textAlign: 'center', height: '100px' }}
+          <div
+            style = {{ gridRow: '1/3' }}
+          >
+            <List
+              heightParameter = { '60%' }
+              margin = { '20%' }
+            >
+              <li
+                style = {{ width: '80%', marginLeft: '10%', marginBottom: '10%' }}
               >
-                <form
-                  style={{ width: '100%', height: '100%' }}
-                  onSubmit = { e => handleSubmit(e) }
+                <Button
+                  callback = { () => redirectTo('/profile') }
                 >
-                  <Input
-                    type = { 'submit' }
-                    height = '100%'
-                    disabled = { disabled }
-                    text = 'Submit'
-                  />
-                </form>
-              </div>
-              <List
-                color = 'denim'
-                margin = 'calc(5% - 5px)'
+                  Your Profile
+                </Button>
+              </li>
+              <li
+                style = {{ width: '80%', marginLeft: '10%', marginBottom: '10%' }}
               >
-                <ProfItem/>
-                <ProfItem/>
-                <ProfItem/>
-                <ProfItem/>
-                <ProfItem/>
-                <ProfItem/>
-              </List>
-            </div>
+                <Button
+                  callback = { () => redirectTo('/findUni') }
+                >
+                  Find me an university!
+                </Button>
+              </li>
+              <li
+                style = {{ width: '80%', marginLeft: '10%' }}
+              >
+                <Button
+                  callback = { () => redirectTo('/aboutUs') }
+                >
+                  About us
+                </Button>
+              </li>
+            </List>
+
           </div>
         </HomePageStyled>
     )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    concern: state.concern,
-    files: state.files
-  }
-}
-
-export default connect(mapStateToProps) (HomePage)
+export default HomePage

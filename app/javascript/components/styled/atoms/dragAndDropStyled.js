@@ -6,6 +6,7 @@ height: 100%;
 border: 5px dotted black;
 border-radius: 20px;
 text-align: center;
+vertical-align: middle;
 line-height: ${ props => props.lineHeight };
 `
 

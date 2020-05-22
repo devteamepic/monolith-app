@@ -1,11 +1,14 @@
 import styled from 'styled-components'
+import colorScheme from '../../../misc/colorScheme'
 
 const HomePageStyled = styled.div`
-height: 100%;
 width: 100%;
-background-color: ${ props => props.colorScheme.marigold };
+height: 100%;
+background-color: ${ colorScheme.marigold };
 display: grid;
-grid-template-columns: 34% 33% 33%;
+grid-template-columns: 50% 50%;
+grid-template-rows: 50% 50%;
+grid-auto-flow: column;
 `
 
 export default HomePageStyled

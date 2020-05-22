@@ -7,12 +7,12 @@ import registerInputChange from './registerInputChangeReducer'
 import concern from './concernReducer'
 
 const rootReducer = combineReducers({
-    files: fileReducer,
-    authenticate: authenticate,
-    validationErrorMessage: validationErrorMessage,
-    loginInputChange: loginInputChange,
-    registerInputChange: registerInputChange,
-    concern: concern,
+  files: fileReducer,
+  authenticate: authenticate,
+  validationErrorMessage: validationErrorMessage,
+  loginInputChange: loginInputChange,
+  registerInputChange: registerInputChange,
+  concern: concern,
 })
 
 export default rootReducer
