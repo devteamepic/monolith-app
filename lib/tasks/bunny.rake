@@ -4,8 +4,7 @@ namespace :bunny do
     require 'bunny'
     require_relative '../../config/proto_types_pb'
 
-    connection = Bunny.new(automatically_recover: false)
-    connection.start
+    connection = Bunny::Connection.get
 
     channel = connection.create_channel
     queue = channel.queue('documents_queue', durable: true)

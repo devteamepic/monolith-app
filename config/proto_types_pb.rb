@@ -11,8 +11,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :size, :double, 4
     optional :file, :string, 5
   end
+  add_message "rails_api.DocumentsSubmission" do
+    optional :id, :int32, 1
+    optional :abstract, :string, 2
+    optional :status, :message, 3, "rails_api.DocumentsSubmission.Status"
+  end
+  add_message "rails_api.DocumentsSubmission.Status" do
+    optional :id, :int32, 1
+    optional :name, :string, 2
+  end
 end
 
 module RailsApi
   Document = Google::Protobuf::DescriptorPool.generated_pool.lookup("rails_api.Document").msgclass
+  DocumentsSubmission = Google::Protobuf::DescriptorPool.generated_pool.lookup("rails_api.DocumentsSubmission").msgclass
+  DocumentsSubmission::Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("rails_api.DocumentsSubmission.Status").msgclass
 end

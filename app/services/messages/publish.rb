@@ -4,8 +4,7 @@ class Messages::Publish < ApplicationService
   attr_accessor :connection, :channel, :queue
 
   def initialize(queue_name: 'documents_queue')
-    @connection = Bunny.new(automatically_recover: true)
-    @connection.start
+    @connection = Bunny::Connection.get
 
     @channel = connection.create_channel
     @queue = channel.queue(queue_name, durable: true)
@@ -22,9 +21,7 @@ class Messages::Publish < ApplicationService
   end
 
   private
-
   def enqueue_message(message)
-
     queue.publish(message, persistent: true)
   end
 
