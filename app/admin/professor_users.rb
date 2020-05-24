@@ -15,7 +15,7 @@ ActiveAdmin.register ProfessorUser do
   #   permitted
   # end
 
-  permit_params :first_name, :last_name, :email, :password
+  permit_params :first_name, :last_name, :email, :password, :university_id, :degree
 
   index do
     selectable_column
@@ -23,6 +23,9 @@ ActiveAdmin.register ProfessorUser do
     column :first_name
     column :last_name
     column :email
+    column :university
+    column :degree
+    actions
   end
 
   show do |u|
@@ -30,6 +33,8 @@ ActiveAdmin.register ProfessorUser do
       row :first_name
       row :last_name
       row :email
+      row :university
+      row :degree
     end
   end
 
@@ -39,6 +44,8 @@ ActiveAdmin.register ProfessorUser do
       f.input :last_name
       f.input :email
       f.input :password, as: :hidden, input_html: {value: SecureRandom.uuid}
+      f.input :university_id, as: :select, collection: University.all.map {|u| [u.name, u.id]}
+      f.input :degree
     end
     f.actions
   end

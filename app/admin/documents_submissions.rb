@@ -24,6 +24,7 @@ ActiveAdmin.register DocumentsSubmission do
       sub.user.full_name
     end
     column :status
+    actions
   end
 
   show do |sub|
