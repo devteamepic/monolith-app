@@ -11,6 +11,7 @@ class Documents::Submissions::Create < ApplicationService
                                                   document_ids: params[:document_ids])
 
     if @documents_submission.save
+      publish_new_submission
       success documents_submission: @documents_submission
     else
       failure errors: @documents_submission.errors.full_messages.first
