@@ -325,6 +325,7 @@ DEPENDENCIES
   react-rails
   rmagick (~> 2.15, >= 2.15.4)
   sassc
+  sassc-rails (~> 2.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
