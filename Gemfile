@@ -21,9 +21,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'bunny', '~> 2.4'
 gem 'google-protobuf'
 gem 'rack-cors'
-gem 'sassc'
-gem 'sassc-rails'
-gem 'activeadmin', '< 2.7.0'
+gem 'activeadmin'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

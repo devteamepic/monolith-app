@@ -302,7 +302,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
-  activeadmin (< 2.7.0)
+  activeadmin
   bootsnap (>= 1.1.0)
   bunny (~> 2.4)
   byebug
@@ -324,8 +324,6 @@ DEPENDENCIES
   rails (~> 5.2.3)
   react-rails
   rmagick (~> 2.15, >= 2.15.4)
-  sassc
-  sassc-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
