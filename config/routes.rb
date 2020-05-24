@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :submissions do
+    get '/submissions' => 'submissions#list'
+    get '/submissions/:id' => 'submissions#show'
+  end
+
   get '*page', to: "static#index", constraints: ->(req) do
     !req.xhr? && req.format.html?
   end
