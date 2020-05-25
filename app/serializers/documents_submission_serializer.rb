@@ -9,7 +9,7 @@ class DocumentsSubmissionSerializer < ApplicationSerializer
   def sender
     if object.user.is_a? ProfessorUser
       ActiveModelSerializers::SerializableResource.new(object.user, serializer: ProfessorUserSerializer)
-    elsif object.is_a? User
+    elsif object.user.is_a? User
       ActiveModelSerializers::SerializableResource.new(object.user, serializer: UserSerializer)
     end
   end

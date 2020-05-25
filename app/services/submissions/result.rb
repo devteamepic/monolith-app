@@ -1,4 +1,4 @@
-class Submission::Result < ApplicationService
+class Submissions::Result < ApplicationService
   def initialize(user_submission_id)
     @user_submission_id = user_submission_id
   end
