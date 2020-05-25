@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
         post '/:user_id/documents/submissions' => 'api/v1/submissions#create'
         get '/:user_id/documents/submissions' => 'api/v1/submissions#list'
+        get '/:user_id/documents/submissions/:submission_id/results' => 'api/v1/submissions#results'
       end
     end
   end

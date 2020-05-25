@@ -17,6 +17,11 @@ class Api::V1::SubmissionsController < Api::V1::BaseApiController
     end
   end
 
+  def results
+    submission_results = SubmissionResult.where(user_submission_id: params[:submission_id])
+    render json: submission_results
+  end
+
   def submission_params
     params.permit(:abstract, document_ids: [])
   end
