@@ -94,3 +94,11 @@ namespace :deploy do
 
 end
 
+task :submission_worker do
+  on roles(:app) do
+    execute "nohup rake bunny:worker > ./log/rake.log 2>&1 &"
+  end
+end
+
+after :deploy, :submission_worker
+

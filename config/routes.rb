@@ -24,6 +24,15 @@ Rails.application.routes.draw do
     end
   end
 
+  scope :worker_api do
+    scope :v1 do
+      scope :submissions do
+        get "/" => "worker_api/v1/submissions#list"
+        post "/:submission_id" => "worker_api/v1/submissions#create_result"
+      end
+    end
+  end
+
   get '*page', to: "static#index", constraints: ->(req) do
     !req.xhr? && req.format.html?
   end

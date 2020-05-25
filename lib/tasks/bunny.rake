@@ -1,13 +1,14 @@
 namespace :bunny do
   desc 'start consumer'
   task :worker do
+    require File.join("#{Rails.root}", "app","services", "bunny","connection.rb")
     require 'bunny'
     require_relative '../../config/proto_types_pb'
 
     connection = Bunny::Connection.get
 
     channel = connection.create_channel
-    queue = channel.queue('documents_queue', durable: true)
+    queue = channel.queue('submission_result_queue', durable: true)
 
     channel.prefetch(1)
     puts ' [*] Waiting for messages. To exit press CTRL+C'
@@ -17,11 +18,6 @@ namespace :bunny do
       # alive. Please avoid using it in real world applications.
       queue.subscribe(manual_ack: true, block: true) do |delivery_info, _properties, body|
 
-        # puts " [x] Received '#{RailsApi::Document.decode(body)}'"
-        p body
-        # imitate some work
-        sleep body.count('.')
-        puts ' [x] Done'
         channel.ack(delivery_info.delivery_tag)
       end
     rescue Interrupt => _
