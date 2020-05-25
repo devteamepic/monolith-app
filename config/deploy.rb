@@ -100,5 +100,5 @@ task :submission_worker do
   end
 end
 
-after :deploy, :submission_worker
+# after :deploy, :submission_worker
 
