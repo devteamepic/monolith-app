@@ -1,11 +1,13 @@
 class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
 
   def list
-    subs = DocumentsSubmission
+    DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
-        .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text')
+        .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text').find_each(batch_size: 10) do |batch|
+      Message::Publish.new(queue_name: "documents_encode").call(ActiveModelSerializers::SerializableResource.new(batch, each_serializer: Short::DocumentsSubmissionSerializer).as_json)
+    end
 
-    render json: subs, namespace: Short
+    render json: {}
   end
 
   def create_result
