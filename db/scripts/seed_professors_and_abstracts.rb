@@ -8,11 +8,11 @@ status = SubmissionStatus.find_or_create_by(name: "Verified")
 data[1..-1].each do |row|
   author, _ = row[AUTHORS_POS].split(',')
   author = author.strip
-  fake_creds = author.split(' ').map(&:strip).join('-')
+  fake_creds = author.split(' ').map(&:strip).join('-').downcase
 
   prof = ProfessorUser.find_or_initialize_by(email: "#{fake_creds}@mail.com")
   prof.first_name = author
-  prof.assign_attributes(password: SecureRandom.uuid) unless prof.encrypted_password.present?
+  prof.password = SecureRandom.uuid unless prof.encrypted_password.present?
   if prof.save
     submission = DocumentsSubmission.find_or_create_by(user: prof, abstract: row[ABSTRACT_POS], status: status)
 
@@ -21,6 +21,7 @@ data[1..-1].each do |row|
       break
     end
   else
+    p prof, author
     p prof.errors.full_messages.last
     break
   end
