@@ -4,10 +4,7 @@ class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
     DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
         .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text').find_each(batch_size: 10) do |batch|
-      batch.each do |msg|
-        Messages::Publish.new(queue_name: "documents_encode").call(msg.to_proto)
-      end
-
+      Messages::Publish.new(queue_name: "documents_encode").call(batch.to_proto)
     end
 
     render json: {}
