@@ -5,7 +5,7 @@ class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
         .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text')
 
-    render json: ActiveModelSerializers::SerializableResource.new(subs, each_serializer: DocumentsSubmissionShortSerializer)
+    render json: subs, namespace: Short
   end
 
   def create_result
@@ -38,7 +38,7 @@ class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
   def get_encoded_abstracts
     subs = DocumentsSubmission
             .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
-            .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'")
+            .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text <> \'{}\'::text')
     render json: subs, namespace: Encoded
   end
 end
