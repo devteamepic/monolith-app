@@ -1,26 +1,11 @@
 class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
-  include ActionController::Live
 
   def list
-    response.headers["Content-Type"] = "application/stream+json"
-    sse = SSE.new(response.stream, retry: 300, event: "professor_submissions")
-
-    DocumentsSubmission
+    subs = DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
         .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text')
-        .find_each(batch_size: 20) do |batch|
-      sse.write(
-          {
-              professor_submission:  ActiveModelSerializers::SerializableResource.new(
-                  batch, serializer: DocumentsSubmissionShortSerializer
-              ).as_json
-          }
-      )
-    end
-  rescue IOError
-    # Client disconnected
-  ensure
-    sse&.close
+
+    render json: ActiveModelSerializers::SerializableResource.new(subs, each_serializer: DocumentsSubmissionShortSerializer)
   end
 
   def create_result
