@@ -1,5 +1,5 @@
 class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
-
+  require 'json'
   def list
     DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
