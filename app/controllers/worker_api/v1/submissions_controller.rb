@@ -7,12 +7,12 @@ class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
 
     DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
-        .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'")
+        .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text <> \'{}\'::text')
         .find_each(batch_size: 20) do |batch|
       sse.write(
           {
               professor_submission:  ActiveModelSerializers::SerializableResource.new(
-                  batch, each_serializer: DocumentsSubmissionShortSerializer
+                  batch, serializer: DocumentsSubmissionShortSerializer
               ).as_json
           }
       )

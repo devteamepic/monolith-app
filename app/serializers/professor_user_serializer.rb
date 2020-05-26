@@ -6,6 +6,6 @@ class ProfessorUserSerializer < ApplicationSerializer
   end
 
   def university
-    {id: object.university.id, name: object.university.name}
+    {id: object.university&.id, name: object.university&.name}
   end
 end
