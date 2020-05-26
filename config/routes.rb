@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       scope :submissions do
         get "/" => "worker_api/v1/submissions#list"
         post "/:submission_id" => "worker_api/v1/submissions#create_result"
+
+        get "/list/encoded" => "worker_api/v1/submissions#get_encoded_abstracts"
+        post "/:submission_id/encoded" => "worker_api/v1/submissions#update_encoded"
       end
     end
   end
