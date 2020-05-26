@@ -10,11 +10,9 @@ class Messages::Publish < ApplicationService
     @queue = channel.queue(queue_name, durable: true)
   end
 
-  def call(*messages)
+  def call(message)
     begin
-      messages.each do |message|
-        enqueue_message message
-      end
+      enqueue_message message
     ensure
       close_connection
     end
