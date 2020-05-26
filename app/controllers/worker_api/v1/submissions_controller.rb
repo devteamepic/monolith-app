@@ -1,10 +1,13 @@
 class WorkerApi::V1::SubmissionsController < WorkerApi::BaseController
-  require 'json'
+
   def list
     DocumentsSubmission
         .joins("INNER JOIN users on users.id = documents_submissions.user_id and users.type = 'ProfessorUser'")
         .joins("INNER JOIN submission_statuses on documents_submissions.status_id = submission_statuses.id and submission_statuses.name = 'Verified'").where('documents_submissions.encoded_abstract::text = \'{}\'::text').find_each(batch_size: 10) do |batch|
-      Messages::Publish.new(queue_name: "documents_encode").call(ActiveModelSerializers::SerializableResource.new(batch, each_serializer: Short::DocumentsSubmissionSerializer).to_json)
+      batch.each do |msg|
+        Messages::Publish.new(queue_name: "documents_encode").call(msg.to_proto)
+      end
+
     end
 
     render json: {}
