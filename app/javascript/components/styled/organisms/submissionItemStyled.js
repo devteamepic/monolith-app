@@ -13,7 +13,7 @@ margin: auto;
 margin-bottom: 50px;
 padding: 10px;
 display: grid;
-grid-template-columns: 90% auto;
+grid-template-columns: 90% 10%;
 grid-template-rows: auto auto;
 grid-auto-flow: column;
 ${ props => props.shouldExpand && additionalStyles }

@@ -15,6 +15,7 @@ const ProfilePage = () => {
   const [userFullName, setUserFullName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [submissionsArray, setSubmissionsArray] = useState([])
+  const [sOther, setSOther] = useState([])
 
   useEffect(() => {
     userService.fetchUserData(localStorage.getItem('token'))
@@ -23,8 +24,8 @@ const ProfilePage = () => {
         setUserEmail(JSON.parse(response).email)
         fileService.getSubmissions(localStorage.getItem('userId'), localStorage.getItem('token'))
           .then(response => {
+            console.log(JSON.parse(response))
             setSubmissionsArray(JSON.parse(response))
-            console.table(JSON.parse(response))
           })
           .catch(error => {
             console.log(error)
@@ -34,6 +35,7 @@ const ProfilePage = () => {
         console.log(error)
       })
   }, [])
+
 
   return (
     <ProfilePageStyled>
@@ -70,19 +72,6 @@ const ProfilePage = () => {
           notDescription = { true }
           additionalStyles = { 'text-align: left; margin-left: 50px; margin-right: 50px; margin-top: 50px; height: fit-content; overflow: hidden;' }
         />
-        <div
-          style = {{ width: '70%', margin: 'auto', border: '1px solid' + colorScheme.marigold, marginTop: '50px', marginBottom: '50px' }}
-        >
-          <List
-            backgroundColor = { colorScheme.steel }
-            margin = { '0' }
-            heightParameter = { '500px' }
-          >
-            <ProfItem/>
-            <ProfItem/>
-            <ProfItem/>
-          </List>
-        </div>
       </div>
       <div>
         <div
@@ -90,15 +79,19 @@ const ProfilePage = () => {
         >
           <List
             heightParameter = { '600px' }
+            onScrollCallback = { e => console.log('asdf') }
           >
-            { submissionsArray.map((item, index) => (
+            { submissionsArray.map((item, index) => {
+              return (
               <SubmissionItem
+                id = { item.id }
                 key = { index }
                 abstract = { item.abstract }
                 number = { index }
                 documents = { item.documents }
               />
-            )) }
+              )
+            }) }
           </List>
         </div>
       </div>

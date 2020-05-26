@@ -50,6 +50,19 @@ const getSubmissions = (userId, token) => {
     .then(response => response.text())
 }
 
+const getSubmission = (userId, token, sId) => {
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+    headers: new Headers({
+      'Authorization' : 'Bearer ' + token,
+    })
+  }
+
+  return fetch("https://unifound.me/api/v1/users/" + userId + '/documents/submissions/' + sId + '/results', requestOptions)
+    .then(response => response.text())
+}
+
 const getImage = (url, userId, token) => {
    var requestOptions = {
     method: 'GET',
@@ -67,5 +80,6 @@ export const fileService = {
   sendFile,
   sendSubmission,
   getSubmissions,
+  getSubmission,
   getImage
 }

@@ -6,7 +6,13 @@ import TextViewer from '../../molecules/TextViewer/TextViewer'
 import colorScheme from '../../../../misc/colorScheme'
 import { profItemPreviewTextGenerator, profItemFullTextGenerator } from '../../../../misc/texts/profItemText'
 
-const ProfItem = ({ ...props }) => {
+const ProfItem = ({ profData, ...props }) => {
+  const shortNameTransform = (fullName) => {
+    fullName = fullName.split(' ')
+    fullName[0] = fullName[0][0] + '.'
+    return fullName.join(' ')
+  }
+  console.log(profData)
   const [isUpsideDown, setIsUpsideDown] = useState(false)
   const [previewStyles] = useState(`
     color: ${ colorScheme.marigold };
@@ -24,8 +30,8 @@ const ProfItem = ({ ...props }) => {
     width: 100%;
     text-align: left;
   `)
-  const [preview] = useState(profItemPreviewTextGenerator('D. Markitanov', 'KBTU', 'MCS'))
-  const [fullText] = useState(profItemFullTextGenerator('Denis Markitanov', 'dmarkitanov@gmail.com', 'Archlinux based OS with custom kernel', 'Master of Computer Science'))
+  const [preview] = useState(profItemPreviewTextGenerator(shortNameTransform(profData.professor_submission.sender.full_name), profData.professor_submission.sender.university.name, profData.professor_submission.sender.degree))
+  const [fullText] = useState(profItemFullTextGenerator(profData.professor_submission.sender.full_name, profData.professor_submission.sender.email, 'Archlinux based OS with custom kernel', profData.professor_submission.sender.degree))
 
   /**
    * Handles the onclick that extenst the element

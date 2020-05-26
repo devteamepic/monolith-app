@@ -8,6 +8,7 @@ background-color: ${ colorScheme.marigold };
 display: grid;
 grid-template-columns: 34% 33% 33%;
 grid-template-rows: 100%;
+overflow-y: hidden;
 `
 
 export default AddFilePageStyled

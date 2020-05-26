@@ -5,14 +5,14 @@ import colorScheme from '../../../../misc/colorScheme'
 const TextArea = ({ height, width, shouldDisable, value, callback, ...props }) => {
   const [size] = useState({ height, width })
   const [disable] = useState(shouldDisable)
-    const [numOfChars, setNumOfChars] = useState(1000)
+    const [numOfChars, setNumOfChars] = useState(5000)
 
     const handleKeyPress = (e) => {
       e.preventDefault()
 
       callback(e.target.value)
 
-      setNumOfChars(1000 - e.target.value.length)
+      setNumOfChars(5000 - e.target.value.length)
     }
 
   return (
@@ -21,7 +21,7 @@ const TextArea = ({ height, width, shouldDisable, value, callback, ...props }) =
     >
       <TextAreaStyled
         size = { size }
-        maxlength = '1000'
+        maxLength = { 5000 }
         onChange = { handleKeyPress }
         disabled = { disable }
       >

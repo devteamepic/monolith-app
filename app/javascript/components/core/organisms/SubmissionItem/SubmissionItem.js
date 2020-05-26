@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SubmissionItemStyled from '../../../styled/organisms/submissionItemStyled'
 import TextViewer from '../../molecules/TextViewer/TextViewer'
 import List from '../List/List'
@@ -8,9 +8,22 @@ import TextArea from '../../atoms/TextArea/TextArea'
 import FileItemImage from '../../molecules/FileItemImage/FileItemImage'
 import ProfItem from '../ProfItem/ProfItem'
 import colorScheme from '../../../../misc/colorScheme'
+import { fileService } from '../../../../misc/services/fileService'
 
+const SubmissionItem = ({ number, abstract, documents, id, ...props }) => {
+  const [data, setData] = useState([])
 
-const SubmissionItem = ({ number, abstract, documents, ...props }) => {
+  useEffect(() => {
+    fileService.getSubmission(localStorage.getItem('userId'), localStorage.getItem('token'), id)
+               .then(response => {
+                 console.log(response)
+                 setData(JSON.parse(response))
+               })
+               .catch(error => {
+                 console.log(error)
+               })
+  }, [])
+
   const ordinalSuffix = (i) => {
     var j = i % 10,
         k = i % 100
@@ -34,6 +47,7 @@ const SubmissionItem = ({ number, abstract, documents, ...props }) => {
   const [text] = useState([
     { component: 'text', size: 'small', textValue: 'Submitted on 02.04.2020' },
   ])
+  const [profId] = useState(id)
 
   const handleClick = () => {
     setIsUpsideDown(!isUpsideDown)
@@ -133,13 +147,15 @@ const SubmissionItem = ({ number, abstract, documents, ...props }) => {
               color = 'denim'
               margin = 'none;'
               heightParameter = '100%'
+              onScrollCallback = { e => console.log('asdf') }
             >
-              <ProfItem/>
-              <ProfItem/>
-              <ProfItem/>
-              <ProfItem/>
-              <ProfItem/>
-              <ProfItem/>
+        { data.map((item, index) => {
+          return (
+            <ProfItem
+              profData = {item}
+            />
+          )
+        }) }
             </List>
           </div>
       </div>

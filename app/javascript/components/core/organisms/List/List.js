@@ -7,7 +7,7 @@ import ListStyled from '../../../styled/organisms/listStyled'
  * contains <li /> items that are already organisms. However I've
  * come across the limit of hierarchy of Atomic Design Pattern.
  */
-const List = ({ children, color, margin, heightParameter, ...props }) => {
+const List = ({ children, onScrollCallback, color, margin, heightParameter, ...props }) => {
   const [backgroundColor] = useState(colorScheme[color])
   const [marginTop] = useState(margin)
   const [height] = useState(heightParameter)
@@ -17,6 +17,7 @@ const List = ({ children, color, margin, heightParameter, ...props }) => {
       backgroundColor = { backgroundColor }
       marginTop = { marginTop }
       height = { height }
+      onScroll = { e => onScrollCallback(e) }
     >
       { children }
     </ListStyled>
