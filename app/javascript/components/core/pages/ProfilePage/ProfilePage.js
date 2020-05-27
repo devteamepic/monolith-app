@@ -79,7 +79,6 @@ const ProfilePage = () => {
         >
           <List
             heightParameter = { '600px' }
-            onScrollCallback = { e => console.log('asdf') }
           >
             { submissionsArray.map((item, index) => {
               return (

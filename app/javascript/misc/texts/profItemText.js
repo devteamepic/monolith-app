@@ -16,7 +16,7 @@ export const profItemFullTextGenerator = (fullName, email, article, degree) => {
     { component: 'text', size: 'small', textValue: 'Email:', isHeader: true },
     { component: 'text', size: 'medium', textValue: email, isHeader: true },
     { },
-    { component: 'text', size: 'small', textValue: 'Related article:', isHeader: true },
+    { component: 'text', size: 'small', textValue: 'Related abstract:', isHeader: true },
     { component: 'text', size: 'medium', textValue: article, isHeader: true },
     { },
     { component: 'text', size: 'small', textValue: 'Full degree:', isHeader: true },

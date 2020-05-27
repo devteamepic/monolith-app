@@ -147,7 +147,6 @@ const SubmissionItem = ({ number, abstract, documents, id, ...props }) => {
               color = 'denim'
               margin = 'none;'
               heightParameter = '100%'
-              onScrollCallback = { e => console.log('asdf') }
             >
         { data.map((item, index) => {
           return (
