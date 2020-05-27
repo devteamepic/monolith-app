@@ -31,7 +31,7 @@ const ProfItem = ({ profData, ...props }) => {
     text-align: left;
   `)
   const [preview] = useState(profItemPreviewTextGenerator(shortNameTransform(profData.professor_submission.sender.full_name), profData.professor_submission.sender.university.name, profData.professor_submission.sender.degree))
-  const [fullText] = useState(profItemFullTextGenerator(profData.professor_submission.sender.full_name, profData.professor_submission.sender.email, profData.professor_submission.abstract, profData.professor_submission.sender.degree))
+  const [fullText] = useState(profItemFullTextGenerator(profData.professor_submission.sender.full_name, profData.professor_submission.sender.email, 'Archlinux based OS with custom kernel', profData.professor_submission.sender.degree))
 
   /**
    * Handles the onclick that extenst the element
@@ -48,6 +48,7 @@ const ProfItem = ({ profData, ...props }) => {
         heightParam = '110px'
         widthParam = '80px'
         icon = 'person'
+        callback = { e => alert('Related abstract: ' + profData.professor_submission.abstract) }
       />
       <TextViewer
         childrenData={ preview }
